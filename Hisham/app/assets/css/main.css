@@ -1,0 +1,284 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('/fonts/thmanyahsans-Light.otf') format('opentype');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('/fonts/thmanyahsans-Regular.otf') format('opentype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('/fonts/thmanyahsans-Medium.otf') format('opentype');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('/fonts/thmanyahsans-Bold.otf') format('opentype');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Thmanyah Sans';
+  src: url('/fonts/thmanyahsans-Black.otf') format('opentype');
+  font-weight: 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+@theme static {
+  --font-sans: 'Thmanyah Sans', sans-serif;
+  --font-serif: 'Thmanyah Sans', sans-serif;
+
+  --color-green-50: #EFFDF5;
+  --color-green-100: #D9FBE8;
+  --color-green-200: #B3F5D1;
+  --color-green-300: #75EDAE;
+  --color-green-400: #00DC82;
+  --color-green-500: #00C16A;
+  --color-green-600: #00A155;
+  --color-green-700: #007F45;
+  --color-green-800: #016538;
+  --color-green-900: #0A5331;
+  --color-green-950: #052E16;
+}
+
+/* Mobile-first responsive utilities */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  overscroll-behavior: none;
+  touch-action: pan-y;
+}
+
+/* Touch optimization */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+button, a {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Smooth transitions for interactive elements */
+button, a, [role="button"] {
+  transition: transform 150ms ease, opacity 150ms ease;
+}
+
+button:active, a:active, [role="button"]:active {
+  transform: scale(0.98);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: #475569;
+}
+
+.dark ::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Safe area support for mobile devices */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Animation utilities */
+@keyframes slideInFromRight {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes slideInFromLeft {
+  from {
+    transform: translateX(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.animate-slide-in-right {
+  animation: slideInFromRight 400ms ease-out;
+}
+
+.animate-slide-in-left {
+  animation: slideInFromLeft 400ms ease-out;
+}
+
+.animate-fade-in {
+  animation: fadeIn 300ms ease-out;
+}
+
+.animate-scale-in {
+  animation: scaleIn 400ms ease-out;
+}
+
+/* Shared presentation slide layout */
+.slide-page {
+  min-height: 100%;
+  padding: 2rem 1.5rem 6rem;
+}
+
+.slide-container {
+  max-width: 72rem;
+  margin: 0 auto;
+}
+
+.slide-container-narrow {
+  max-width: 42rem;
+  margin: 0 auto;
+}
+
+.slide-header {
+  margin-bottom: 2rem;
+}
+
+.slide-header h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: #0f172a;
+  margin-bottom: 0.5rem;
+}
+
+.dark .slide-header h2 {
+  color: #f8fafc;
+}
+
+.slide-header p {
+  color: #64748b;
+}
+
+/* Mobile touch improvements */
+@media (max-width: 1023px) {
+  /* Larger touch targets on mobile */
+  button, a, [role="button"] {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Prevent zoom on input focus */
+  input, textarea, select {
+    font-size: 16px !important;
+  }
+}
+
+/* RTL-specific adjustments */
+[dir="rtl"] {
+  text-align: right;
+}
+
+[dir="rtl"] .flex {
+  flex-direction: row-reverse;
+}
+
+[dir="rtl"] .space-x-reverse > * + * {
+  margin-right: var(--tw-space-x-reverse);
+  margin-left: 0;
+}
+
+/* RTL icon adjustments */
+[dir="rtl"] .i-lucide-arrow-right::before {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .i-lucide-arrow-left::before {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .i-lucide-chevron-right::before {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .i-lucide-chevron-left::before {
+  transform: scaleX(-1);
+}
+
+/* Arabic font optimization */
+body {
+  font-feature-settings: "liga" 1, "calt" 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+/* Thmanyah Sans typography */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Thmanyah Sans', sans-serif;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+p, span, div, li, a, button, input, textarea, select {
+  font-family: 'Thmanyah Sans', sans-serif;
+  line-height: 1.7;
+}
